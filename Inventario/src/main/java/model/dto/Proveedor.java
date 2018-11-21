@@ -4,7 +4,7 @@ public class Proveedor {
 	private int id;
 	private String razonSocial;
 	private String rubro;
-	private String ruc;
+	private double ruc;
 	private String nombreComercial;
 	private String pais;
 	private String ciudad;
@@ -13,9 +13,10 @@ public class Proveedor {
 	private String direccion;
 	private String email;
 	private String contacto;
-	private String fax;
-	private int telefono1;
-	private int telefono2;
+	private double fax;
+	private double telefono1;
+	private double telefono2;
+	
 	public int getId() {
 		return id;
 	}
@@ -34,10 +35,10 @@ public class Proveedor {
 	public void setRubro(String rubro) {
 		this.rubro = rubro;
 	}
-	public String getRuc() {
+	public double getRuc() {
 		return ruc;
 	}
-	public void setRuc(String ruc) {
+	public void setRuc(double ruc) {
 		this.ruc = ruc;
 	}
 	public String getNombreComercial() {
@@ -88,23 +89,22 @@ public class Proveedor {
 	public void setContacto(String contacto) {
 		this.contacto = contacto;
 	}
-	public String getFax() {
+	public double getFax() {
 		return fax;
 	}
-	public void setFax(String fax) {
+	public void setFax(double fax) {
 		this.fax = fax;
 	}
-	public int getTelefono1() {
+	public double getTelefono1() {
 		return telefono1;
 	}
-	public void setTelefono1(int telefono1) {
+	public void setTelefono1(double telefono1) {
 		this.telefono1 = telefono1;
 	}
-	public int getTelefono2() {
+	public double getTelefono2() {
 		return telefono2;
 	}
-	public void setTelefono2(int telefono2) {
+	public void setTelefono2(double telefono2) {
 		this.telefono2 = telefono2;
 	}
-	
 }
