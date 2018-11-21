@@ -9,7 +9,7 @@ public interface Dao<T> {
 
 	boolean update(T obj);
 
-	boolean delete(Int id);
+	boolean delete(int id);
 
 	List<T> getAll();
 }

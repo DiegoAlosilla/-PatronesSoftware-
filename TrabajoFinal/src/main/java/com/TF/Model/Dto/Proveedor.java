@@ -1,10 +1,10 @@
-package com.TF.Model.Dto;
+package model.dto;
 
 public class Proveedor {
 	private int id;
 	private String razonSocial;
 	private String rubro;
-	private double ruc;
+	private String ruc;
 	private String nombreComercial;
 	private String pais;
 	private String ciudad;
@@ -13,10 +13,9 @@ public class Proveedor {
 	private String direccion;
 	private String email;
 	private String contacto;
-	private double fax;
-	private double telefono1;
-	private double telefono2;
-	
+	private String fax;
+	private int telefono1;
+	private int telefono2;
 	public int getId() {
 		return id;
 	}
@@ -35,10 +34,10 @@ public class Proveedor {
 	public void setRubro(String rubro) {
 		this.rubro = rubro;
 	}
-	public double getRuc() {
+	public String getRuc() {
 		return ruc;
 	}
-	public void setRuc(double ruc) {
+	public void setRuc(String ruc) {
 		this.ruc = ruc;
 	}
 	public String getNombreComercial() {
@@ -89,22 +88,23 @@ public class Proveedor {
 	public void setContacto(String contacto) {
 		this.contacto = contacto;
 	}
-	public double getFax() {
+	public String getFax() {
 		return fax;
 	}
-	public void setFax(double fax) {
+	public void setFax(String fax) {
 		this.fax = fax;
 	}
-	public double getTelefono1() {
+	public int getTelefono1() {
 		return telefono1;
 	}
-	public void setTelefono1(double telefono1) {
+	public void setTelefono1(int telefono1) {
 		this.telefono1 = telefono1;
 	}
-	public double getTelefono2() {
+	public int getTelefono2() {
 		return telefono2;
 	}
-	public void setTelefono2(double telefono2) {
+	public void setTelefono2(int telefono2) {
 		this.telefono2 = telefono2;
 	}
+	
 }
