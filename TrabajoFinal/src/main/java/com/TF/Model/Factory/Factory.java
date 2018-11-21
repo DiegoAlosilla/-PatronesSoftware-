@@ -1,6 +1,8 @@
 package com.TF.Model.Factory;
 
+import com.TF.Model.Dao.ProductoDao;
 import com.TF.Model.Dao.ProveedorDao;
+import com.TF.Model.Dao.Impl.ProductoDaoImpl;
 import com.TF.Model.Dao.Impl.ProveedorDaoImpl;
 
 public class Factory {
@@ -18,5 +20,9 @@ public class Factory {
 	
 	public ProveedorDao getProveedor() {
 		return new ProveedorDaoImpl();
+	}
+	
+	public ProductoDao getProducto() {
+		return new ProductoDaoImpl();
 	}
 }
