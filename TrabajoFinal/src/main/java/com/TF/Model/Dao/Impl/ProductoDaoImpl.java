@@ -8,15 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.TF.Model.Dao.ProductoDao;
-import com.TF.Model.DataBase.DataBaseMysql;
+import com.TF.Model.DataBase.DataBasePostgre;
 import com.TF.Model.Dto.Producto;
-import com.TF.Model.Dto.Proveedor;
-
 
 
 public class ProductoDaoImpl implements ProductoDao{
 	
-	DataBaseMysql db = new DataBaseMysql();
+	DataBasePostgre db = new DataBasePostgre();
 	Connection cn = null;
 	
 	@Override
@@ -28,7 +26,7 @@ public class ProductoDaoImpl implements ProductoDao{
 			prepare.setString(1, obj.getNombre());
 			prepare.setDouble(2, obj.getPrecio());
 			prepare.setInt(3, obj.getStock());
-			prepare.setInt(4, obj.getStock());
+			prepare.setInt(4, obj.getUnidad());
 			prepare.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -85,9 +83,10 @@ public class ProductoDaoImpl implements ProductoDao{
 			while(result.next()) {
 				producto = new Producto();
 				producto.setId(result.getInt("id"));
-				producto.setNombre(result.getString("razon"));
-				producto.setPrecio(result.getDouble(("rubro")));
-				producto.setStock(result.getInt("ruc"));
+				producto.setNombre(result.getString("nombre"));
+				producto.setPrecio(result.getDouble(("precio")));
+				producto.setStock(result.getInt("stock"));
+				producto.setUnidad(result.getInt("unidad"));
 				listado.add(producto);
 			}
 			return listado;
@@ -108,9 +107,10 @@ public class ProductoDaoImpl implements ProductoDao{
 			ResultSet result = prepare.executeQuery();
 			producto = new Producto();
 			producto.setId(result.getInt("id"));
-			producto.setNombre(result.getString("razon"));
-			producto.setPrecio(result.getDouble(("rubro")));
-			producto.setStock(result.getInt("ruc"));
+			producto.setNombre(result.getString("nombre"));
+			producto.setPrecio(result.getDouble(("precio")));
+			producto.setStock(result.getInt("stock"));
+			producto.setUnidad(result.getInt("unidad"));
 			return producto;
 		} catch(SQLException e) {
 			return null;
