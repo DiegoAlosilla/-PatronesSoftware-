@@ -3,13 +3,13 @@ package model.dao;
 import java.util.List;
 
 public interface Dao<T> {
-	T find(int id);
+	T findBy(int id);
 
 	boolean create(T obj);
 
 	boolean update(T obj);
 
-	boolean delete(List<Integer> ids);
+	boolean delete(Int id);
 
 	List<T> getAll();
 }
