@@ -12,7 +12,7 @@ import com.TF.Model.Dao.OrdenCompraDao;
 import com.TF.Model.DataBase.DataBaseMysql;
 import com.TF.Model.Dto.OrdenCompra;
 
-public class OrdenCompraImpl implements OrdenCompraDao {
+public class OrdenCompraDaoImpl implements OrdenCompraDao {
 
 	DataBaseMysql db = new DataBaseMysql();
 	Connection cn = null;
@@ -96,10 +96,12 @@ public class OrdenCompraImpl implements OrdenCompraDao {
 			PreparedStatement prepare = cn.prepareStatement("SELECT o.id, o.total, o.fecha FROM ordenescompra o where o.id=?");
 			prepare.setInt(1, id);
 			ResultSet result = prepare.executeQuery();
-			orden = new OrdenCompra();
-			orden.setId(result.getInt("id"));
-			orden.setTotal(result.getDouble("total"));
-			orden.setFecha(result.getDate("fecha"));
+			if(result.next()){
+				orden = new OrdenCompra();
+				orden.setId(result.getInt("id"));
+				orden.setTotal(result.getDouble("total"));
+				orden.setFecha(result.getDate("fecha"));
+			}
 			return orden;
 		} catch(SQLException e) {
 			return null;

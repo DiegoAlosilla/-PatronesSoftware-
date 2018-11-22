@@ -47,9 +47,11 @@ public class CategoriaDaoImpl implements CategoriaDao {
 			PreparedStatement prepare = cn.prepareStatement("SELECT c.id, c.nombre FROM categorias c WHERE c.id=?");
 			prepare.setInt(1, id);
 			ResultSet result = prepare.executeQuery();
-			categoria = new Categoria();
-			categoria.setId(result.getInt("id"));
-			categoria.setNombre(result.getString("nombre"));
+			if(result.next()) {
+				categoria = new Categoria();
+				categoria.setId(result.getInt("id"));
+				categoria.setNombre(result.getString("nombre"));
+			}
 			return categoria;
 		} catch(SQLException e) {
 			return null;

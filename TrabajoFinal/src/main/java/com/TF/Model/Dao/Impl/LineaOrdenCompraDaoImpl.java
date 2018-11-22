@@ -1,6 +1,10 @@
 package com.TF.Model.Dao.Impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.TF.Model.Dao.LineaOrdenCompraDao;
@@ -14,8 +18,19 @@ public class LineaOrdenCompraDaoImpl implements LineaOrdenCompraDao {
 	
 	@Override
 	public boolean Save(LineaOrdenCompra obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			cn = db.connectDb();
+			PreparedStatement prepare = cn.prepareStatement("INSERT INTO lineaordencompras (ordencompras_id, productos_id, cantidad) VALUES(?,?,?)");
+			prepare.setInt(1, obj.getOrden().getId());
+			prepare.setInt(2, obj.getProducto().getId());
+			prepare.setInt(3, obj.getCantidad());
+			prepare.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			return false;
+		} finally {
+			db.desconnectDb();
+		}
 	}
 
 	@Override
@@ -26,14 +41,42 @@ public class LineaOrdenCompraDaoImpl implements LineaOrdenCompraDao {
 
 	@Override
 	public boolean Update(LineaOrdenCompra obj) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			cn = db.connectDb();
+			PreparedStatement prepare = cn.prepareStatement("UPDATE lineaordencompras SET cantidad=? WHERE ordencompras_id=? and productos_id=?");
+			prepare.setInt(1, obj.getCantidad());
+			prepare.setInt(2, obj.getOrden().getId());
+			prepare.setInt(3, obj.getProducto().getId());
+			prepare.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			return false;
+		} finally {
+			db.desconnectDb();
+		}
 	}
 
 	@Override
 	public List<LineaOrdenCompra> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		LineaOrdenCompra linea = null;
+		List<LineaOrdenCompra> listado = new ArrayList<>();
+		try {
+			cn = db.connectDb();
+			PreparedStatement prepare = cn.prepareStatement("SELECT l.ordencompras_id, l.productos_id, l.cantidad FROM lineaordencompras l");
+			ResultSet result = prepare.executeQuery();
+			while(result.next()) {
+				linea = new LineaOrdenCompra();
+				linea.setOrden(new OrdenCompraDaoImpl().FindBy(result.getInt("ordencompras_id")));
+				linea.setProducto(new ProductoDaoImpl().FindBy(result.getInt("productos_id")));
+				linea.setCantidad(result.getInt("cantidad"));
+				listado.add(linea);
+			}
+			return listado;
+		} catch(SQLException e) {
+			return null;
+		} finally {
+			db.desconnectDb();
+		}
 	}
 
 	@Override
@@ -42,4 +85,27 @@ public class LineaOrdenCompraDaoImpl implements LineaOrdenCompraDao {
 		return null;
 	}
 
+	@Override
+	public List<LineaOrdenCompra> FindByOrden(int id) {
+		LineaOrdenCompra linea = null;
+		List<LineaOrdenCompra> listado = new ArrayList<>();
+		try {
+			cn = db.connectDb();
+			PreparedStatement prepare = cn.prepareStatement("SELECT l.ordencompras_id, l.productos_id, l.cantidad FROM lineaordencompras l WHERE l.ordencompras_id=?");			
+			prepare.setInt(1, id);
+			ResultSet result = prepare.executeQuery();
+			while(result.next()) {
+				linea = new LineaOrdenCompra();
+				linea.setOrden(new OrdenCompraDaoImpl().FindBy(result.getInt("ordencompras_id")));
+				linea.setProducto(new ProductoDaoImpl().FindBy(result.getInt("productos_id")));
+				linea.setCantidad(result.getInt("cantidad"));
+				listado.add(linea);
+			}
+			return listado;
+		} catch(SQLException e) {
+			return null;
+		} finally {
+			db.desconnectDb();
+		}
+	}
 }

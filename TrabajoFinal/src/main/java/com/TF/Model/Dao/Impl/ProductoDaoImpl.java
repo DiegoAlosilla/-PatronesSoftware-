@@ -106,13 +106,15 @@ public class ProductoDaoImpl implements ProductoDao{
 			PreparedStatement prepare = cn.prepareStatement("SELECT p.id, p.nombre, p.precio, p.stock, p.unidad, p.categoria_id FROM productos p where p.id=?");
 			prepare.setInt(1, id);
 			ResultSet result = prepare.executeQuery();
-			producto = new Producto();
-			producto.setId(result.getInt("id"));
-			producto.setNombre(result.getString("nombre"));
-			producto.setPrecio(result.getDouble(("precio")));
-			producto.setStock(result.getInt("stock"));
-			producto.setUnidad(result.getInt("unidad"));
-			producto.setCategoria(new CategoriaDaoImpl().FindBy(result.getInt("categoria_id")));
+			if(result.next()) {
+				producto = new Producto();
+				producto.setId(result.getInt("id"));
+				producto.setNombre(result.getString("nombre"));
+				producto.setPrecio(result.getDouble(("precio")));
+				producto.setStock(result.getInt("stock"));
+				producto.setUnidad(result.getInt("unidad"));
+				producto.setCategoria(new CategoriaDaoImpl().FindBy(result.getInt("categoria_id")));
+			}
 			return producto;
 		} catch(SQLException e) {
 			return null;
