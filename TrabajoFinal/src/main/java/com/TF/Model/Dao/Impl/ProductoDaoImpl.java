@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.TF.Model.Dao.ProductoDao;
-import com.TF.Model.DataBase.DataBasePostgre;
+import com.TF.Model.DataBase.DataBaseMysql;
 import com.TF.Model.Dto.Producto;
 
 public class ProductoDaoImpl implements ProductoDao{
 	
-	DataBasePostgre db = new DataBasePostgre();
+	DataBaseMysql db = new DataBaseMysql();
 	Connection cn = null;
 	
 	@Override

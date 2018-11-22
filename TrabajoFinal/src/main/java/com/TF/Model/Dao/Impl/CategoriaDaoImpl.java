@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.TF.Model.Dao.CategoriaDao;
-import com.TF.Model.DataBase.DataBasePostgre;
+import com.TF.Model.DataBase.DataBaseMysql;
 import com.TF.Model.Dto.Categoria;
 
 public class CategoriaDaoImpl implements CategoriaDao {
 
-	DataBasePostgre db = new DataBasePostgre();
+	DataBaseMysql db = new DataBaseMysql();
 	Connection cn = null;
 	
 	@Override
