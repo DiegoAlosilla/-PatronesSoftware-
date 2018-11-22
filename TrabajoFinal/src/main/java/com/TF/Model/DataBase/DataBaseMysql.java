@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataBaseMysql {
-	private static final String url = "jdbc:mysql://localhost:3306/dbpatronestf?verifyServerCertificate=false&useSSL=true";
+	private static final String url = "jdbc:mysql://localhost:3306/patronessoftware?verifyServerCertificate=false&useSSL=true";
 	private static final String user = "root";
 	private static final String password = "root";
 	

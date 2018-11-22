@@ -7,6 +7,7 @@ public class Producto {
 	private int stock;
 	private int unidad;
 	private Categoria categoria;
+	private Proveedor proveedor;
 	public int getId() {
 		return id;
 	}
@@ -42,5 +43,11 @@ public class Producto {
 	}
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
 	}
 }

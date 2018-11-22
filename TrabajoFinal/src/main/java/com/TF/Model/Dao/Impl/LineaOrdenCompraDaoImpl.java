@@ -20,10 +20,10 @@ public class LineaOrdenCompraDaoImpl implements LineaOrdenCompraDao {
 	public boolean Save(LineaOrdenCompra obj) {
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("INSERT INTO lineaordencompras (ordencompras_id, productos_id, cantidad) VALUES(?,?,?)");
-			prepare.setInt(1, obj.getOrden().getId());
-			prepare.setInt(2, obj.getProducto().getId());
-			prepare.setInt(3, obj.getCantidad());
+			PreparedStatement prepare = cn.prepareStatement("INSERT INTO lineaordencompras (cantidad, ordencompras_id, productos_id) VALUES(?,?,?)");
+			prepare.setInt(1, obj.getCantidad());
+			prepare.setInt(2, obj.getOrden().getId());
+			prepare.setInt(3, obj.getProducto().getId());
 			prepare.executeUpdate();
 			return true;
 		} catch (SQLException e) {

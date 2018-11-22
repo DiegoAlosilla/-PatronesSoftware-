@@ -1,9 +1,11 @@
 package com.TF.Model.Factory;
 
+import com.TF.Model.Dao.CategoriaDao;
 import com.TF.Model.Dao.LineaOrdenCompraDao;
 import com.TF.Model.Dao.OrdenCompraDao;
 import com.TF.Model.Dao.ProductoDao;
 import com.TF.Model.Dao.ProveedorDao;
+import com.TF.Model.Dao.Impl.CategoriaDaoImpl;
 import com.TF.Model.Dao.Impl.LineaOrdenCompraDaoImpl;
 import com.TF.Model.Dao.Impl.OrdenCompraDaoImpl;
 import com.TF.Model.Dao.Impl.ProductoDaoImpl;
@@ -36,5 +38,9 @@ public class Factory {
 	
 	public LineaOrdenCompraDao getLineaOrden() {
 		return new LineaOrdenCompraDaoImpl();
+	}
+	
+	public CategoriaDao getCategoria() {
+		return new CategoriaDaoImpl();
 	}
 }

@@ -1,5 +1,5 @@
 package com.TF.Model.Dao.Impl;
-
+//dar de baja este dao con sus clases relacionadas
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

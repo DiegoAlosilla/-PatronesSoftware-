@@ -21,9 +21,9 @@ public class ProveedorDaoImpl implements ProveedorDao{
 		try {
 			cn = db.connectDb();
 			PreparedStatement prepare = cn.prepareStatement("INSERT INTO proveedores "
-					+ "(razon, rubro, ruc, nombre, pais,"
+					+ "(razon_social, rubro, ruc, nombre_comercial, pais,"
 					+ "ciudad, referencia, provincia, direccion, email,"
-					+ "contacto, fax, telf1, telf2) "
+					+ "contacto, fax, telefono_uno, telefono_dos) "
 					+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			prepare.setString(1, obj.getRazonSocial());
 			prepare.setString(2, obj.getRubro());
@@ -66,17 +66,17 @@ public class ProveedorDaoImpl implements ProveedorDao{
 		List<Proveedor> listado = new ArrayList<>();
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("SELECT p.id, p.razon, p.rubro, p.ruc, p.nombre,"
+			PreparedStatement prepare = cn.prepareStatement("SELECT p.id, p.razon_social, p.rubro, p.ruc, p.nombre_comercial,"
 					+ "p.pais, p.ciudad, p.referencia, p.provincia,"
-					+ "p.direccion, p.email, p.contacto, p.fax, p.telf1, p.telf2 FROM proveedores p");
+					+ "p.direccion, p.email, p.contacto, p.fax, p.telefono_uno, p.telefono_dos FROM proveedores p");
 			ResultSet result = prepare.executeQuery();
 			while(result.next()) {
 				proveedor = new Proveedor();
 				proveedor.setId(result.getInt("id"));
-				proveedor.setRazonSocial(result.getString("razon"));
+				proveedor.setRazonSocial(result.getString("razon_social"));
 				proveedor.setRubro(result.getString("rubro"));
 				proveedor.setRuc(result.getDouble("ruc"));
-				proveedor.setNombreComercial(result.getString("nombre"));
+				proveedor.setNombreComercial(result.getString("nombre_comercial"));
 				proveedor.setPais(result.getString("pais"));
 				proveedor.setCiudad(result.getString("ciudad"));
 				proveedor.setReferencia(result.getString("referencia"));
@@ -85,8 +85,8 @@ public class ProveedorDaoImpl implements ProveedorDao{
 				proveedor.setEmail(result.getString("email"));
 				proveedor.setContacto(result.getString("contacto"));
 				proveedor.setFax(result.getDouble("fax"));
-				proveedor.setTelefono1(result.getDouble("telf1"));
-				proveedor.setTelefono2(result.getDouble("telf2"));
+				proveedor.setTelefono1(result.getDouble("telefono_uno"));
+				proveedor.setTelefono2(result.getDouble("telefono_dos"));
 				listado.add(proveedor);
 			}
 			return listado;
@@ -102,18 +102,18 @@ public class ProveedorDaoImpl implements ProveedorDao{
 		Proveedor proveedor = null;
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("SELECT p.id, p.razon, p.rubro, p.ruc, p.nombre,"
+			PreparedStatement prepare = cn.prepareStatement("SELECT p.id, p.razon_social, p.rubro, p.ruc, p.nombre_comercial,"
 					+ "p.pais, p.ciudad, p.referencia, p.provincia,"
-					+ "p.direccion, p.email, p.contacto, p.fax, p.telf1, p.telf2 FROM proveedores p where p.id =?");
+					+ "p.direccion, p.email, p.contacto, p.fax, p.telefono_uno, p.telefono_dos FROM proveedores p where p.id =?");
 			prepare.setInt(1, id);
 			ResultSet result = prepare.executeQuery();
 			if(result.next()) {
 				proveedor = new Proveedor();
 				proveedor.setId(result.getInt("id"));
-				proveedor.setRazonSocial(result.getString("razon"));
+				proveedor.setRazonSocial(result.getString("razon_social"));
 				proveedor.setRubro(result.getString("rubro"));
 				proveedor.setRuc(result.getDouble("ruc"));
-				proveedor.setNombreComercial(result.getString("nombre"));
+				proveedor.setNombreComercial(result.getString("nombre_comercial"));
 				proveedor.setPais(result.getString("pais"));
 				proveedor.setCiudad(result.getString("ciudad"));
 				proveedor.setReferencia(result.getString("referencia"));
@@ -122,8 +122,8 @@ public class ProveedorDaoImpl implements ProveedorDao{
 				proveedor.setEmail(result.getString("email"));
 				proveedor.setContacto(result.getString("contacto"));
 				proveedor.setFax(result.getDouble("fax"));
-				proveedor.setTelefono1(result.getDouble("telf1"));
-				proveedor.setTelefono2(result.getDouble("telf2"));
+				proveedor.setTelefono1(result.getDouble("telefono_uno"));
+				proveedor.setTelefono2(result.getDouble("telefono_dos"));
 			}
 			return proveedor;
 		} catch(SQLException e) {

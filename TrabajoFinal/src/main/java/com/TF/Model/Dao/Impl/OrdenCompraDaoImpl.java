@@ -21,7 +21,7 @@ public class OrdenCompraDaoImpl implements OrdenCompraDao {
 	public boolean Save(OrdenCompra obj) {
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("INSERT INTO ordenescompra (total, fecha) VALUES(?,?)");
+			PreparedStatement prepare = cn.prepareStatement("INSERT INTO ordencompras (total, fecha) VALUES(?,?)");
 			prepare.setDouble(1, obj.getTotal());
 			prepare.setDate(2, (Date)obj.getFecha());
 			prepare.executeUpdate();
@@ -37,7 +37,7 @@ public class OrdenCompraDaoImpl implements OrdenCompraDao {
 	public boolean Delete(OrdenCompra obj) {
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("DELETE FROM ordenescompra WHERE id =?");
+			PreparedStatement prepare = cn.prepareStatement("DELETE FROM ordencompras WHERE id =?");
 			prepare.setInt(1, obj.getId());
 			prepare.executeUpdate();
 			return true;
@@ -52,7 +52,7 @@ public class OrdenCompraDaoImpl implements OrdenCompraDao {
 	public boolean Update(OrdenCompra obj) {
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("UPDATE ordenescompra SET total=?, fecha=? where id=?");
+			PreparedStatement prepare = cn.prepareStatement("UPDATE ordencompras SET total=?, fecha=? where id=?");
 			prepare.setDouble(1, obj.getTotal());
 			prepare.setDate(2, (Date)obj.getFecha());
 			prepare.setInt(3, obj.getId());
@@ -71,7 +71,7 @@ public class OrdenCompraDaoImpl implements OrdenCompraDao {
 		List<OrdenCompra> listado = new ArrayList<>();
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("SELECT o.id, o.total, o.fecha FROM ordenescompra o");
+			PreparedStatement prepare = cn.prepareStatement("SELECT o.id, o.total, o.fecha FROM ordencompras o");
 			ResultSet result = prepare.executeQuery();
 			while(result.next()) {
 				orden = new OrdenCompra();
@@ -93,7 +93,7 @@ public class OrdenCompraDaoImpl implements OrdenCompraDao {
 		OrdenCompra orden = null;
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("SELECT o.id, o.total, o.fecha FROM ordenescompra o where o.id=?");
+			PreparedStatement prepare = cn.prepareStatement("SELECT o.id, o.total, o.fecha FROM ordencompras o where o.id=?");
 			prepare.setInt(1, id);
 			ResultSet result = prepare.executeQuery();
 			if(result.next()){
@@ -114,7 +114,7 @@ public class OrdenCompraDaoImpl implements OrdenCompraDao {
 	public boolean UpdateTotal(int id, double sum) {
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("UPDATE ordenescompra SET total=? where id=?");
+			PreparedStatement prepare = cn.prepareStatement("UPDATE ordencompras SET total=? where id=?");
 			prepare.setDouble(1, sum);
 			prepare.setInt(2, id);
 			prepare.executeUpdate();
