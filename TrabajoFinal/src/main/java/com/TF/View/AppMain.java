@@ -199,7 +199,7 @@ public class AppMain {
 			System.out.println("[4] Salir");
 			temp = s.nextInt();
 		}
-		s.close();
+		s.close();*/
 	}
 
 
