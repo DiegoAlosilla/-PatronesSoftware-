@@ -8,13 +8,14 @@ import com.TF.Controller.ProveedorController;
 import com.TF.Model.Dto.Proveedor;
 import com.TF.Service.ProveedorService;
 import com.TF.Service.Impl.ProveedorServiceImpl;
-
-
+import com.TF.Service.ProductoService;
+import com.TF.Service.Impl.ProductoServiceImpl;
 public class AppMain {
 	
  
  
         List<Proveedor> listadoP;
+        ProductoService productoServ = new ProductoServiceImpl();
         ProveedorService proServ = new ProveedorServiceImpl();
         ProveedorController pController = new ProveedorController(proServ);
         
@@ -100,10 +101,12 @@ public class AppMain {
                     recursiva_modificar();
                     break;
                 case 2:
+                    //int numero_orden = 0;
                     System.out.println("Consultar orden de compra ");
                     System.out.println("------------------------- ");
                     System.out.println("N° Orden : ");
-                    // Ingresar numero de orden
+                    //numero_orden = s.nextInt();
+                    
                     System.out.println("Codigo    Proveedor             Precio     Descuento      Importe ");
                     //Mostrar los datos desde la bd
                     System.out.println("..................................................................");
@@ -114,6 +117,7 @@ public class AppMain {
                     }
                     break;
                 case 3:
+                    //Producto producto = new Producto();
                     System.out.println("Modificar Producto ");
                     System.out.println("------------------ ");
                     System.out.println("Si desea modificar ingrese el nuevo valor, si no desea modificar ingrese 0 ");
@@ -177,18 +181,18 @@ public class AppMain {
                     System.out.println("Ruc : ");
                     proveedor.getRuc();
                     System.out.println("Proveedor : ");
-                    // Proveedor
+                    proveedor.getNombreComercial();
                     System.out.println("Direccion : ");
-                    // Direccion
+                    proveedor.getDireccion();
                     System.out.println("Ciudad : ");
-                    // Ciudad
+                    proveedor.getCiudad();
                     System.out.println("Telefono : ");
-                    // telefono;
+                    proveedor.getTelefono1();
                     System.out.println("Correo : ");
-                    // correo;
-                    System.out.println(" \n ");
+                    proveedor.getEmail();
+                    System.out.println("----------");
                     System.out.println("Subtotal : ");
-                    // subtotal
+                    //subtotal
                     System.out.println("IGV(18%) : ");
                     // IGV
                     System.out.println("Total : ");
@@ -210,8 +214,6 @@ public class AppMain {
                                 System.out.println("Imprimiendo... ");
                                 break;
                             case 3:
-                                //Runtime.getRuntime().exec("cls");
-                               // LimpiarPantalla();
                                 recursiva_modificar();
                                 break;
                             default:
