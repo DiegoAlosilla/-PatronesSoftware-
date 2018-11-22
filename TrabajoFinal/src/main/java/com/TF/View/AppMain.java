@@ -2,14 +2,23 @@ package com.TF.View;
 
 import java.util.List;
 import java.util.Scanner;
+import java.io.IOException;
 
 import com.TF.Controller.ProveedorController;
 import com.TF.Model.Dto.Proveedor;
 import com.TF.Service.ProveedorService;
 import com.TF.Service.Impl.ProveedorServiceImpl;
 
+
+
 public class AppMain {
 	
+ 
+ 
+        List<Proveedor> listadoP;
+        ProveedorService proServ = new ProveedorServiceImpl();
+        ProveedorController pController = new ProveedorController(proServ);
+        
     public static void main(String[] args) {
     	menu();
             }
@@ -66,10 +75,7 @@ public class AppMain {
 	 * temp = s.nextInt(); } s.close();
      */
     public static void menu() {
-		Proveedor obj;
-        List<Proveedor> listadoP;
-        ProveedorService proServ = new ProveedorServiceImpl();
-        ProveedorController pController = new ProveedorController(proServ);
+
         Scanner s = new Scanner(System.in);
 
         int ap = 0;
@@ -164,12 +170,13 @@ public class AppMain {
 
 	}
     public static void recursiva_modificar(){
+        Proveedor proveedor = new Proveedor();
         Scanner s = new Scanner(System.in);
         int ep=0;
-                            System.out.println("Ingresar numero de cotizacion :");
+                    System.out.println("Ingresar numero de cotizacion :");
                     //numero de cotizacion
                     System.out.println("Ruc : ");
-                    // RUC
+                    proveedor.getRuc();
                     System.out.println("Proveedor : ");
                     // Proveedor
                     System.out.println("Direccion : ");
@@ -204,6 +211,8 @@ public class AppMain {
                                 System.out.println("Imprimiendo... ");
                                 break;
                             case 3:
+                                //Runtime.getRuntime().exec("cls");
+                               // LimpiarPantalla();
                                 recursiva_modificar();
                                 break;
                             default:
@@ -212,3 +221,4 @@ public class AppMain {
                     } while (ep != 1 && ep != 2 && ep != 3);
     }
 }
+
