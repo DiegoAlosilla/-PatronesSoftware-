@@ -21,6 +21,8 @@ public class AppMain {
 			System.out.println("3.Modificar producto");
 			System.out.println("4.Consultar proveedor");
 			System.out.println("5.Actualizar estado cotización");
+			//faltan (cambiar el 5. por Registrar Producto y agregar Consultar Producto)
+			
 			op=s.nextInt();
 			switch (op) {
 			case 1:
