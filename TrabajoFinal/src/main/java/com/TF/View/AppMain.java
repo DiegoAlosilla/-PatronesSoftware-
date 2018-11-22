@@ -58,6 +58,7 @@ public class AppMain {
 					System.out.println("1.Enviar : ");
 					System.out.println("2.Imprimir : ");
 					System.out.println("3.Modificar datos : ");
+                                        ap=s.nextInt();
 					switch (ap) {
 					case 1:
 						System.out.println("Orden de compra Registrada y enviada");
