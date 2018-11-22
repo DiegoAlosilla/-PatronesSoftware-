@@ -92,7 +92,7 @@ public class AppMain {
                     System.out.println("-------------------------");
                     int valor = 1234123;
                     System.out.println("Orden de compra : " + valor);
-                   // recursiva_modificar();
+                    recursiva_modificar();
                     break;
                 case 2:
                     System.out.println("Consultar orden de compra ");
@@ -163,5 +163,52 @@ public class AppMain {
         } while (ap != 1 && ap != 2 && ap != 3 && ap != 4 && ap != 5);
 
 	}
-    
+    public static void recursiva_modificar(){
+        Scanner s = new Scanner(System.in);
+        int ep=0;
+                            System.out.println("Ingresar numero de cotizacion :");
+                    //numero de cotizacion
+                    System.out.println("Ruc : ");
+                    // RUC
+                    System.out.println("Proveedor : ");
+                    // Proveedor
+                    System.out.println("Direccion : ");
+                    // Direccion
+                    System.out.println("Ciudad : ");
+                    // Ciudad
+                    System.out.println("Telefono : ");
+                    // telefono;
+                    System.out.println("Correo : ");
+                    // correo;
+                    System.out.println(" \n ");
+                    System.out.println("Subtotal : ");
+                    // subtotal
+                    System.out.println("IGV(18%) : ");
+                    // IGV
+                    System.out.println("Total : ");
+                    // total
+                    System.out.println("Producto    Unidad   Cantidad   Precio : ");
+                    // Productos
+
+                    System.out.println("------------------------------------------ ");
+                    do {
+                        System.out.println("1.Enviar : ");
+                        System.out.println("2.Imprimir : ");
+                        System.out.println("3.Modificar datos : ");
+                        ep = s.nextInt();
+                        switch (ep) {
+                            case 1:
+                                System.out.println("Orden de compra Registrada y enviada");
+                                break;
+                            case 2:
+                                System.out.println("Imprimiendo... ");
+                                break;
+                            case 3:
+                                recursiva_modificar();
+                                break;
+                            default:
+                                break;
+                        }
+                    } while (ep != 1 && ep != 2 && ep != 3);
+    }
 }
