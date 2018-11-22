@@ -6,6 +6,7 @@ public class Producto {
 	private double precio;
 	private int stock;
 	private int unidad;
+	private Categoria categoria;
 	public int getId() {
 		return id;
 	}
@@ -36,5 +37,10 @@ public class Producto {
 	public void setUnidad(int unidad) {
 		this.unidad = unidad;
 	}
-	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 }

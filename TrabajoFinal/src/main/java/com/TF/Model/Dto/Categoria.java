@@ -3,6 +3,7 @@ package com.TF.Model.Dto;
 public class Categoria {
 	private int id;
 	private String nombre;
+	
 	public int getId() {
 		return id;
 	}

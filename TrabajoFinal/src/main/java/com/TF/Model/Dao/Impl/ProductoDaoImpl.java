@@ -11,7 +11,6 @@ import com.TF.Model.Dao.ProductoDao;
 import com.TF.Model.DataBase.DataBasePostgre;
 import com.TF.Model.Dto.Producto;
 
-
 public class ProductoDaoImpl implements ProductoDao{
 	
 	DataBasePostgre db = new DataBasePostgre();
@@ -22,11 +21,12 @@ public class ProductoDaoImpl implements ProductoDao{
 		try {
 			cn = db.connectDb();
 			PreparedStatement prepare = cn.prepareStatement("INSERT INTO productos"
-					+ "(nombre, precio, stock, unidad) VALUES(?,?,?,?)");
+					+ "(nombre, precio, stock, unidad, categoria_id) VALUES(?,?,?,?,?)");
 			prepare.setString(1, obj.getNombre());
 			prepare.setDouble(2, obj.getPrecio());
 			prepare.setInt(3, obj.getStock());
 			prepare.setInt(4, obj.getUnidad());
+			prepare.setInt(5, obj.getCategoria().getId());
 			prepare.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -78,7 +78,7 @@ public class ProductoDaoImpl implements ProductoDao{
 		List<Producto> listado = new ArrayList<>();
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("SELECT p.id, p.nombre, p.precio, p.stock, p.unidad FROM productos p");
+			PreparedStatement prepare = cn.prepareStatement("SELECT p.id, p.nombre, p.precio, p.stock, p.unidad, p.categoria_id FROM productos p");
 			ResultSet result = prepare.executeQuery();
 			while(result.next()) {
 				producto = new Producto();
@@ -87,6 +87,7 @@ public class ProductoDaoImpl implements ProductoDao{
 				producto.setPrecio(result.getDouble(("precio")));
 				producto.setStock(result.getInt("stock"));
 				producto.setUnidad(result.getInt("unidad"));
+				producto.setCategoria(new CategoriaDaoImpl().FindBy(result.getInt("categoria_id")));
 				listado.add(producto);
 			}
 			return listado;
@@ -102,7 +103,7 @@ public class ProductoDaoImpl implements ProductoDao{
 		Producto producto = null;
 		try {
 			cn = db.connectDb();
-			PreparedStatement prepare = cn.prepareStatement("SELECT p.id, p.nombre, p.precio, p.stock, p.unidad FROM productos p where p.id=?");
+			PreparedStatement prepare = cn.prepareStatement("SELECT p.id, p.nombre, p.precio, p.stock, p.unidad, p.categoria_id FROM productos p where p.id=?");
 			prepare.setInt(1, id);
 			ResultSet result = prepare.executeQuery();
 			producto = new Producto();
@@ -111,6 +112,7 @@ public class ProductoDaoImpl implements ProductoDao{
 			producto.setPrecio(result.getDouble(("precio")));
 			producto.setStock(result.getInt("stock"));
 			producto.setUnidad(result.getInt("unidad"));
+			producto.setCategoria(new CategoriaDaoImpl().FindBy(result.getInt("categoria_id")));
 			return producto;
 		} catch(SQLException e) {
 			return null;
