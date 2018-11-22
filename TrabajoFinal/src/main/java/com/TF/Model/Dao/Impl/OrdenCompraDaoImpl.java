@@ -109,4 +109,20 @@ public class OrdenCompraDaoImpl implements OrdenCompraDao {
 			db.desconnectDb();
 		}
 	}
+
+	@Override
+	public boolean UpdateTotal(int id, double sum) {
+		try {
+			cn = db.connectDb();
+			PreparedStatement prepare = cn.prepareStatement("UPDATE ordenescompra SET total=? where id=?");
+			prepare.setDouble(1, sum);
+			prepare.setInt(2, id);
+			prepare.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			return false;
+		} finally {
+			db.desconnectDb();
+		}
+	}
 }

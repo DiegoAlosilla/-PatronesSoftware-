@@ -39,4 +39,9 @@ public class OrdenCompraServiceImpl implements OrdenCompraService {
 	public OrdenCompra FindBy(int id) {
 		return Dao.FindBy(id);
 	}
+
+	@Override
+	public boolean UpdateTotal(int id, double sum) {
+		return Dao.UpdateTotal(id, sum);
+	}
 }
