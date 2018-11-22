@@ -2,13 +2,12 @@ package com.TF.View;
 
 import java.util.List;
 import java.util.Scanner;
-import java.io.IOException;
+
 
 import com.TF.Controller.ProveedorController;
 import com.TF.Model.Dto.Proveedor;
 import com.TF.Service.ProveedorService;
 import com.TF.Service.Impl.ProveedorServiceImpl;
-
 
 
 public class AppMain {
@@ -78,11 +77,11 @@ public class AppMain {
 
         Scanner s = new Scanner(System.in);
 
-        int ap = 0;
-        int ra= 0;
-        int re=0;
-        int ri=0;
-        int ro=0;
+        int op_menu1 = 0;
+        int op_consultarOrden= 0;
+        int op_modificarProducto=0;
+        int op_consultarProveedor=0;
+        int op_actualizar=0;
        
         do {
             System.out.println("1.Registrar orden de compra");
@@ -90,8 +89,8 @@ public class AppMain {
             System.out.println("3.Modificar producto");
             System.out.println("4.Consultar proveedor");
             System.out.println("5.Actualizar estado cotización");
-            ap = s.nextInt();
-            switch (ap) {
+            op_menu1 = s.nextInt();
+            switch (op_menu1) {
                 case 1:
 
                     System.out.println("Registrar orden de compra");
@@ -109,8 +108,8 @@ public class AppMain {
                     //Mostrar los datos desde la bd
                     System.out.println("..................................................................");
                     System.out.println("Presione 1 para volver al menu");
-                    ra=s.nextInt();
-                    if (ra==1) {
+                    op_consultarOrden=s.nextInt();
+                    if (op_consultarOrden==1) {
                     	menu();
                     }
                     break;
@@ -129,8 +128,8 @@ public class AppMain {
                     System.out.println("Producto Modificado");
                     System.out.println("....................");
                     System.out.println("Presione 1 para volver al menu");
-                    re=s.nextInt();
-                    if (re==1) {
+                    op_modificarProducto=s.nextInt();
+                    if (op_modificarProducto==1) {
                     	menu();
                     }
                     break;
@@ -143,8 +142,8 @@ public class AppMain {
                     // ingresa ruc
                     System.out.println("..................................................................");
                     System.out.println("Presione 1 para volver al menu");
-                    ri=s.nextInt();
-                    if (ri==1) {
+                    op_consultarProveedor=s.nextInt();
+                    if (op_consultarProveedor==1) {
                     	menu();
                     }
                     break;
@@ -158,21 +157,21 @@ public class AppMain {
                     // Mostrar nombre del proveedor
                     System.out.println("Estado de cotización actualizado ");
                     System.out.println("Presione 1 para volver al menu");
-                    ro=s.nextInt();
-                    if (ro==1) {
+                    op_actualizar=s.nextInt();
+                    if (op_actualizar==1) {
                     	menu();
                     }
                     break;
                 default:
                     break;
             }
-        } while (ap != 1 && ap != 2 && ap != 3 && ap != 4 && ap != 5);
+        } while (op_menu1 != 1 && op_menu1 != 2 && op_menu1 != 3 && op_menu1 != 4 && op_menu1 != 5);
 
 	}
     public static void recursiva_modificar(){
         Proveedor proveedor = new Proveedor();
         Scanner s = new Scanner(System.in);
-        int ep=0;
+        int op_recursiva=0;
                     System.out.println("Ingresar numero de cotizacion :");
                     //numero de cotizacion
                     System.out.println("Ruc : ");
@@ -202,8 +201,8 @@ public class AppMain {
                         System.out.println("1.Enviar : ");
                         System.out.println("2.Imprimir : ");
                         System.out.println("3.Modificar datos : ");
-                        ep = s.nextInt();
-                        switch (ep) {
+                        op_recursiva = s.nextInt();
+                        switch (op_recursiva) {
                             case 1:
                                 System.out.println("Orden de compra Registrada y enviada");
                                 break;
@@ -218,7 +217,7 @@ public class AppMain {
                             default:
                                 break;
                         }
-                    } while (ep != 1 && ep != 2 && ep != 3);
+                    } while (op_recursiva != 1 && op_recursiva != 2 && op_recursiva != 3);
     }
 }
 
