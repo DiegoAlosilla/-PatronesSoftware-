@@ -59,6 +59,7 @@ public class VentaDaoImpl implements VentaDao{
 			prepare.setString(1, obj.getComprobante());
 			prepare.setInt(2, obj.getNumComprobante());
 			prepare.setInt(3, obj.getTotal());
+			prepare.setInt(4, obj.getId());
 			prepare.executeUpdate();
 			return true;
 		} catch (SQLException e) {
